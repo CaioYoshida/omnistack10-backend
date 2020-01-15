@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 
@@ -9,6 +10,8 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack-2qe63.mongodb.net/
     useUnifiedTopology: true
 }).then(() => console.log('MongoDB ok'))
   .catch(err => console.log(`Error: ${err}`));
+
+app.use(cors());
 
 // this line below must be before all routes.
 app.use(express.json());
