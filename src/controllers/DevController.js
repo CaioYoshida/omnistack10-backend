@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
+const { findConnections, sendMessage } = require('../websocket');
 
 module.exports = {
   async index (req, res) {
@@ -47,6 +48,15 @@ module.exports = {
       techs: techsArray,
       location
     })
+
+    // Websocket -> creations 10km far way from currentRegion and match with techs filter
+
+    const sendSocketMessagesTo = findConnections(
+      { latitude, longitude },
+      techsArray,
+    )
+
+    sendMessage(sendSocketMessagesTo, 'new-dev', dev);
     
     return res.json(dev);
   },
