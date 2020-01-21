@@ -79,7 +79,7 @@ module.exports = {
       bio,
       techs: techsArray,
       location
-    });
+    }, { new: true });
 
     return res.json(dev);
   },

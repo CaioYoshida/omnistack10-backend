@@ -13,7 +13,8 @@ setupWebsocket(server);
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack-2qe63.mongodb.net/omnistack10?retryWrites=true&w=majority', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
 }).then(() => console.log('MongoDB ok'))
   .catch(err => console.log(`Error: ${err}`));
 
